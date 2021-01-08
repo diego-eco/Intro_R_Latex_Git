@@ -3,6 +3,11 @@
 
 ---
 
+Videos disponibles [en esta carpeta de Google Drive](https://drive.google.com/drive/folders/1JevkQlHRgBcH8s0zaNZunDfZCiz3dAuI?usp=sharing)
+
+Material disponible [en este repositorio de GitHub](https://github.com/diego-eco/Intro_R_Latex_Git)
+
+
 ## Día 1
 
 * Conceptos y lenguajes de programación
