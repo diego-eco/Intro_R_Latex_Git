@@ -1,0 +1,75 @@
+---
+title: "Día 2"
+author:
+  - Diego López^[Institution One, diego.lopez@colmex.mx]
+  - Jane Doe^[Institution Two, jane@example.org]
+date: " "
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: false
+toc-title: Contenido
+fontsize: 11pt
+geometry: margin=1.0in
+linestretch: 1
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Bienvenidos al día 2
+
+Hoy revisaremos las opciones del YAML para personalizar nuestros documentos.
+
+> Esta es una cita de alguien importante 
+
+## Un subtítulo interesante
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."  
+
+Para más información visita [este enlace](https://diego-eco.github.io/toolkit.html)
+
+### Una subsección con ecuaciones
+
+Pulvinar velit erat magnis euismod curae facilisi suspendisse lectus ligula purus sapien, mi sociis habitasse cubilia platea sollicitudin ad hac senectus cursus nec, odio netus egestas urna lacus varius id curabitur ridiculus ante. Venenatis pretium quisque sagittis blandit fames dis cum, lacinia fermentum ultrices nisl malesuada magna pellentesque, mollis eros donec scelerisque sociosqu parturient.^[Esta es una nota al pie de página]
+
+$$
+f'(x) = \lim\limits_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}  
+$$
+
+# Consejos
+
+## Lista sin orden en Markdown
+
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+    
+## Lista ordenada en Markdown
+
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+    
+
+# Otros tips
+
+A continuación mostramos un "corte de página":
+
+Sed ultrices fermentum facilisis. Vivamus vitae vestibulum sapien. Pellentesque quis pharetra nisi, et laoreet urna. Pellentesque in mi rutrum, porttitor diam vitae, vulputate elit. Duis vulputate pellentesque sollicitudin. Ut pretium nec orci id pharetra. Aenean ut lorem nec ipsum vestibulum dignissim. Donec feugiat dolor ac tellus cursus elementum id et lectus. Pellentesque elementum auctor congue.
+
+---
+
+Nullam et vehicula risus. Donec ac condimentum lorem. Ut vehicula molestie luctus. Maecenas pretium nisl id tellus placerat tempor. Aliquam gravida sed elit ut pulvinar. Curabitur metus magna, gravida in pulvinar nec, faucibus id nibh. Ut eu bibendum velit, et sollicitudin diam. Sed semper leo leo, vitae consectetur nisi maximus vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    
+
+
+

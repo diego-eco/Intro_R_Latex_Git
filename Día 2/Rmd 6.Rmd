@@ -1,0 +1,120 @@
+---
+title: "Día 2"
+author:
+  - Diego López^[El Colegio de México, diego.lopez@colmex.mx]
+  - Aurora Ramírez^[Facultad de Economía, aurora@example.org]
+date: " "
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+toc-title: Contenido
+urlcolor: blue
+---
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Esta función nos dice el directorio donde estamos trabajando
+getwd()
+# setwd("C:/Users/lopez/Desktop/R & Latex/2") #string
+# Limpiamos nuestro ambiente
+rm(list = ls())
+
+# Llamamos las librerías a utilizar con pacman
+# install.packages("pacman")
+pacman::p_load(tidyverse,
+               kableExtra,
+               ggplot2,
+               cowplot)
+```
+
+
+# Bienvenidos al día 2
+
+Hoy revisaremos las opciones del YAML para personalizar nuestros documentos.
+
+> Esta es una cita de alguien importante 
+
+## Un subtítulo interesante
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."  
+
+Para más información visita [este enlace](https://diego-eco.github.io/toolkit.html)
+
+### Una subsección con ecuaciones
+
+Pulvinar velit erat magnis euismod curae facilisi suspendisse lectus ligula purus sapien, mi sociis habitasse cubilia platea sollicitudin ad hac senectus cursus nec, odio netus egestas urna lacus varius id curabitur ridiculus ante. Venenatis pretium quisque sagittis blandit fames dis cum, lacinia fermentum ultrices nisl malesuada magna pellentesque, mollis eros donec scelerisque sociosqu parturient.^[Esta es una nota al pie de página]
+
+$$
+f'(x) = \lim\limits_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}  
+$$
+    
+# Consejos
+
+## Lista sin orden en Markdown
+
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+    
+## Lista ordenada en Markdown
+
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+    
+# Otros tips
+
+A continuación mostramos un "corte de página":
+
+Sed ultrices fermentum facilisis. Vivamus vitae vestibulum sapien. Pellentesque quis pharetra nisi, et laoreet urna. Pellentesque in mi rutrum, porttitor diam vitae, vulputate elit. Duis vulputate pellentesque sollicitudin. Ut pretium nec orci id pharetra. Aenean ut lorem nec ipsum vestibulum dignissim. Donec feugiat dolor ac tellus cursus elementum id et lectus. Pellentesque elementum auctor congue.
+
+---
+
+Nullam et vehicula risus. Donec ac condimentum lorem. Ut vehicula molestie luctus. Maecenas pretium nisl id tellus placerat tempor. Aliquam gravida sed elit ut pulvinar. Curabitur metus magna, gravida in pulvinar nec, faucibus id nibh. Ut eu bibendum velit, et sollicitudin diam. Sed semper leo leo, vitae consectetur nisi maximus vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    
+
+## Agregando una imagen a nuestro documento
+
+Tenemos dos formas de agregar una imagen, a través de Markdown o de R. Recomiendo usar la última porque nos permite personalizar más y agregar opciones de etiqueta más fácilmente.
+
+Probablemente necesitamos instalar la paquetería [magick](https://cran.r-project.org/web/packages/magick/vignettes/intro.html) 
+
+```
+install.packages("magick")
+```
+
+### Imagen con Markdown
+
+![Mishka](C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg){width=50%}
+
+### Imagen con Latex
+
+\begin{center}
+\includegraphics[width=0.5\columnwidth]{C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg}
+\end{center}
+
+### Imagen con R
+
+```{r fig.cap = "Foto de mi perro. \\label{perro1}"}
+imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+imagen1
+```
+
+Utilizando las etiquetas de Latex podemos hacer referencia a la Imagen \ref{perro1} en nuestro documento. Esto no se puede hacer con la forma de Markdown.
+
+---
+
+```{r fig.cap = "Dos fotos de mi perro. \\label{perro2}"}
+imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+imagen2 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka2.jpg",scale=0.6)
+plot_grid(imagen1, imagen2)
+```
+
+

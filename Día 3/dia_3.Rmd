@@ -1,0 +1,659 @@
+---
+title: "Día 3"
+thanks: " "
+author:
+- Diego López Tamayo ^[Maestría en Economía . El Colegio de México . diego.lopez@colmex.mx]
+date: ""
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+geometry: margin=0.8in
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message = T, warning = T, fig.align='center',
+                      fig.pos = "H", fig.width = 8, fig.height = 4,
+                      results = "hide") #Mostrar Chunks sin output
+```
+
+\newpage
+
+```{r}
+# Configuración
+rm(list = ls())
+pacman::p_load(tidyverse,
+               ggthemes,
+               haven,
+               kableExtra,
+               cowplot)
+```
+
+# R básico
+
+## Tipos de datos
+
+class( )
+
+```{r}
+class(123)
+class("123")
+class("Hola")
+class(NA)
+class(TRUE)
+```
+
+
+```{r}
+# Esto es un vector
+x <- c(2,3,4,5,6)
+```
+
+
+### Factores
+
+```{r}
+sex <- factor(c("male", "female", "female", "male","male"))
+class(sex)
+levels(sex)
+nlevels(sex)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Operciones básicas
+
+```{r}
+3+3 #Integers 
+5-3
+6*7
+5/3 #Float
+sqrt(9)
+```
+
+
+
+
+
+
+
+
+
+
+## Operadores lógicos 
+
+```{r}
+10<12
+resultado <- 10<=12
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### If condicional
+
+```
+if(){
+  
+} else {
+  
+}
+```
+
+
+```{r}
+if(3>5){
+  message <- 'I execute this when true!'
+} else {
+  message <- 'I execute this when false!'
+}
+print (message) 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- AND operator (&)
+- OR operator (|)
+- NOT operator, otherwise known as the bang operator (!)
+
+```{r}
+message <- 'Debo llevar paraguas?'
+clima <- 'nublado'
+proba_lluvia <- F
+
+string <- 'texto'
+
+if(clima== 'nublado' | proba_lluvia == T){
+  message <- 'Lleva paraguas!'
+  } else {
+    message <- 'No lleves paraguas!'
+  }
+print(message)
+```
+
+
+
+
+
+
+
+## Vectores
+
+```{r}
+x <- c(2,4,10,5,1)
+y <- c(3,5,7,8,1)
+length(y)
+sum(y)
+
+x+y
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Matrices
+
+```{r}
+matriz <- matrix(c(1,2,3,4,5,6,7,8,9),nrow=3,ncol=3,byrow = F) 
+matriz
+dim(matriz)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Ejemplo operaciones Estimador MCO
+
+$$
+ \begin{pmatrix}  Y_i \\ X_{1i}\\ X_{2i} \end{pmatrix} \sim N_3 \begin{bmatrix} \begin{pmatrix}  1 \\ 0\\ 2 \end{pmatrix}, \begin{pmatrix}  0.8 & 0.4 & -0.2 \\ 0.4 & 1.0 & -0.8 \\ -0.2 & -0.8 & 2.0 \end{pmatrix}  \end{bmatrix}
+$$
+
+```{r}
+set.seed(2020)
+library("MASS")
+#Vectores aleatorios
+  N <- 400                 
+  mu <- c(1,0,2)          
+  sigma <- matrix(c(0.8,0.4,-0.2,0.4,1.0,-0.8,-0.2,-0.8,2.0),nrow=3,ncol=3)
+  v_aleat <- mvrnorm(N,mu,sigma)
+  colnames(v_aleat)<-c("y","x1","x2")
+```
+
+```{r}
+#Data frame
+  observ <- data.frame(v_aleat)
+#Matrix X 
+  unidad <- c(rep(1, 400))
+  X<- matrix(c(unidad,observ$x1,observ$x2),nrow=400,ncol=3)
+#Vector Y
+  Y <- c(observ$y)
+  X<- matrix(c(unidad,observ$x1,observ$x2),nrow=400,ncol=3)
+```
+
+$$
+\hat b_{MCO} = (X^ \prime X)^{-1} X^ \prime Y
+$$ 
+
+```{r}
+#Matrix X transpuesta
+  Xtrans <- t(X)
+#Algebra matricial
+  Xtrans_X <- Xtrans%*%X
+  # Inversa con solve
+  inv_Xtrans_X <- solve(Xtrans_X)
+  b_mco <- inv_Xtrans_X%*%Xtrans%*%Y
+  b_mco
+```
+
+
+
+
+
+# Tidyverse
+
+- **readr**, para lectura y escritura de archivos.
+- **dplyr**, para facilitar las tareas habituales de manipulación de datos
+- **tidyr**, para transformar los datos de ancho a largo / ordenado y viceversa
+- **ggplot2**, para gráficos
+- **tibble**, para dataframes más simples y fáciles
+- **stringr**, para trabajar con strings y regex R
+- **purrr**, para trabajar con funciones y vectores sin muchos bucles.
+- **forcats**, para tratar fácilmente con variables factoriales / categóricas
+
+Usaremos la librería [penguins](https://github.com/allisonhorst/palmerpenguins)
+
+```{r}
+library(palmerpenguins)
+data("penguins")
+```
+
+
+```{r}
+class(penguins$species)
+levels(penguins$species)
+nlevels(penguins$species)
+```
+
+
+
+
+
+
+
+
+
+
+## Exploración inicial
+
+glimpse()
+head() , tail()
+summary()
+names()
+
+```{r}
+head(penguins)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Piping (y luego...)
+
+Pipe `%>%`
+
+select( ) y select(- )
+filter( )
+arrange y arrange(desc())
+
+```{r}
+#Cuidado con select
+penguins %>% dplyr::select(species,sex) %>% head()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+# Cuidado con filter
+penguins %>%
+        dplyr::filter(island == "Torgersen")
+```
+
+```{r}
+penguins %>%
+  filter(island == "Torgersen") %>%
+  count() #count
+```
+
+
+
+
+
+mutate( ) agregar columna y conservar otras
+transmute( ) agregar columna y no conservar otras
+
+```{r}
+# penguins <- para sobreescribir base original con nueva variable
+penguins %>%
+      mutate(nueva_var = body_mass_g / flipper_length_mm)
+```
+
+
+
+
+
+rename(nuevo = vejo) 
+
+```{r}
+penguins %>%
+  rename(especies = species )
+```
+
+
+
+
+# ggplot2
+
+```{r}
+#Notice how initially, a ggplot object is created as a blank canvas. 
+plot <- ggplot(data=mtcars)
+plot
+```
+
+```{r}
+# Notice that the aesthetics are then set inside the ggplot() function as an argument.
+plot <- ggplot(data=mtcars, aes(x=wt , y=qsec))
+plot
+```
+
+
+
+
+
+
+
+```{r}
+plot <- ggplot(data=mtcars, aes(x=wt, y=qsec)) + geom_point()
+plot
+```
+
+
+
+
+```{r}
+plot + geom_point(aes(color=drat)) + 
+       geom_smooth() +
+       labs(title=" Motor Trend Car Road Tests", 
+           subtitle="Aspects of automobile design and performance for 32 automobiles",
+           x="Weight (1000 lbs)", y="1/4 mile time",
+           color="Rear axle ratio")
+```
+
+
+```{r}
+bar <- ggplot(mpg, aes(x=class)) + geom_bar()
+bar
+ggsave("bar-example.png")
+```
+
+
+
+
+
+\newpage
+
+
+
+
+# ENOE-1 2020 Sociodemográfico
+
+La Encuesta Nacional de Ocupación y Empleo (ENOE) es la principal fuente de información sobre el mercado laboral mexicano al ofrecer **datos trimestrales** de la fuerza de trabajo, la ocupación, la informalidad laboral, la subocupación y la desocupación.
+
+Revisar [Conociendo la ENOE](https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/metodologias/est/702825001357.pdf)
+
+Revisar [Resultados primer trimestre 2020](https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/resultados_ciudades_enoe_2020_trim1.pdf)
+
+```{r fig.cap = "Estructura ENOE. \\label{enoe}"}
+imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/3/ENOE.png",scale=0.6)
+imagen1
+```
+
+```{r}
+ENOE<-read_dta("C:/Users/lopez/Desktop/R & Latex/3/2020trim1_dta/SDEMT120.dta")
+```
+
+
+
+
+
+```{r}
+dim(ENOE)
+# glimpse(ENOE)
+```
+
+
+
+La tabla *sociodemográfico* contiene un campo con el nombre *fac* el cual almacena el factor de expansión de cada registro. El campo *fac* contiene un valor numérico de 6 dígitos e indica cuantas personas representa el entrevistado en población. Si el residente entrevistado es un ocupado y en el campo FAC existe un valor de 308, quiere decir que hay 308 ocupados. Si el residente es un desocupado entonces existen 308 desocupados.
+
+
+
+
+```{r}
+table(ENOE$clase1)
+```
+
+
+```{r}
+# Para usar etiquetas
+library(sjlabelled)
+table(as_label(ENOE$clase1))
+```
+
+
+```{r}
+# Para usar factor de expansión
+as_label(count(x = ENOE, clase1, wt = fac))
+as_label(count(x = ENOE, clase2, wt = fac))
+```
+
+Resultado definitivo de entrevistas: R_DEF. Todo valor diferente a 00, es considerado como NO ENTREVISTA. 
+
+
+## Población de 14 años y más:
+
+ Criterio:
+ R_DEF=00 y (C_RES=1 ó 3) y (EDA>=14 y EDA<=98)
+
+```{r}
+class(ENOE$r_def)
+class(ENOE$c_res)
+class(ENOE$eda)
+
+#Método 1
+mayor14 <- ENOE %>% filter(r_def==0,c_res %in% c(1, 3),eda>=14 & eda<=98)
+dim(mayor14)
+#Método 2
+mayor14 <- ENOE %>% filter(r_def==0,c_res==1 | c_res==3,eda>=14 & eda<=98)
+dim(mayor14)
+
+table(as_label(mayor14$clase1))
+```
+
+
+
+
+## Algunas estadísticas
+
+No es necesario crear bases filtradas, todo se puede hacer con *pipes* desde ENOE
+
+```{r}
+# Ingreso por hora promedio
+ENOE %>% 
+    filter(clase1 == 1)%>%
+    summarise(avg_ing= mean(ing_x_hrs))
+```
+
+
+
+
+
+```{r}
+# Ingreso por hora promedio por sexo
+ENOE %>% 
+    filter(clase1 == 1)%>%
+      group_by(as_label(sex)) %>%
+      summarise(avg_ing = mean(ing_x_hrs))
+```
+
+
+
+\newpage
+
+
+# ENIGH 2018 Concentrado Hogar. Sample 20% desde GitHub
+
+Objetivo es proporcionar un panorama estadístico del comportamiento de los ingresos y gastos de los hogares en cuanto a su monto, procedencia y distribución; adicionalmente, ofrece información sobre las características ocupacionales y sociodemográficas de los integrantes del hogar, así como las características de la infraestructura de la vivienda y el equipamiento del hogar. **Se publica cada dos años.** Uno de sus principales usos es el que le da el Coneval, pues a partir de la ENIGH se realizan las mediciones de pobreza multidimensional.
+
+
+Para hacer un sample:
+
+```
+ENIGH <- read_csv(
+  "https://raw.githubusercontent.com/diego-eco/diego-eco.github.io/master/downloads/ENIGH_concentradohogar_2018.csv")
+ENIGH_sample <- ENIGH %>% sample_frac(.2)
+
+write.csv(ENIGH_sample,"ENIGH_sample.csv")
+```
+
+
+```{r}
+ENIGH <- read_csv(
+  "https://raw.githubusercontent.com/diego-eco/diego-eco.github.io/master/downloads/ENIGH_sample.csv")
+```
+
+
+```{r}
+# glimpse(ENIGH)
+```
+
+
+
+
+
+## Tabla de ingreso corriente
+
+```{r}
+a <- sum(ENIGH$factor)
+b <- sum(ENIGH$factor*ENIGH$tot_integ)
+c <- mean(ENIGH$ing_cor)
+d <- weighted.mean(ENIGH$ing_cor, ENIGH$factor)
+A <- data.frame(matrix(c(a,b,c,d), ncol = 1))
+row.names(A) <- c("# Hogares", "# Habitantes", "Ingreso corriente s.f.", "Ingreso corriente c.f.")
+```
+
+
+```{r}
+kable(A, col.names = c("Cantidad"),
+      caption = "Primer resumen ENIGH",
+      format.args = list(big.mark = ","),
+      digits = 0
+      )%>% kable_classic(full_width = F, html_font = "Cambria") %>% 
+  footnote(general_title = "Fuente: elaboracion propia con datos de la ENIGH, INEGI.
+           \n Ingreso corriente promedio trimestral", 
+           general = "", 
+           symbol = c("s.f.: sin factor de expansión",
+                      "c.f.: con factor de expansión"), 
+           footnote_order = c("symbol", "general") )
+```
+ 
+
+## Deciles de ingreso
+
+```{r}
+deciles <- seq(0.1, 1, 0.1)
+#Deciles sin factor
+deciles_ingreso <- quantile(ENIGH$ing_cor, deciles)
+
+library(reldist)
+
+#Deciles con factor
+#utilizamos la función "wtd.quantile" de la libreria "reldist"
+deciles_ingreso2 <- wtd.quantile(ENIGH$ing_cor, deciles, weight = ENIGH$factor)
+
+#Comparación entre deciles 
+kable(cbind(deciles_ingreso, deciles_ingreso2), 
+      col.names = c("Sin factor de expansión", "Con factor de expansión"), 
+      caption = "Deciles de ingreso, 2018", format.args = list(big.mark = ","),
+      digits = 0) %>% 
+  kable_classic(full_width = F, html_font = "Cambria") %>% 
+  footnote(general_title = "Fuente: elaboracion propia con datos de la ENIGH, INEGI.
+           \n Ingreso corriente promedio trimestral", general = "")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

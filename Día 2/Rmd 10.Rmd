@@ -1,0 +1,189 @@
+---
+title: ""
+thanks: ""
+date: ""
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    includes:
+      before_body: cover.tex
+tables: true
+toc-title: Contenido
+urlcolor: blue
+csl: apa.csl
+bibliography: fuentes.bib
+header-includes:
+   - \usepackage[nottoc]{tocbibind}
+   - \renewcommand{\listfigurename}{Lista de figuras}
+   - \renewcommand{\listtablename}{Lista de tablas}
+---
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.align='center', fig.pos = "H", fig.width = 7, fig.height = 3)
+```
+
+```{r}
+# Limpiamos nuestro ambiente
+rm(list = ls())
+
+# Llamamos las librerías a utilizar con pacman
+# install.packages("pacman")
+pacman::p_load(tidyverse,
+               kableExtra,
+               ggplot2,
+               cowplot)
+```
+
+\newpage
+
+# Bienvenidos al día 2
+
+Hoy revisaremos las opciones del YAML para personalizar nuestros documentos.
+
+> Esta es una cita de alguien importante 
+
+## Un subtítulo interesante
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."  
+
+Para más información visita [este enlace](https://diego-eco.github.io/toolkit.html)
+
+### Una subsección con ecuaciones
+
+Pulvinar velit erat magnis euismod curae facilisi suspendisse lectus ligula purus sapien, mi sociis habitasse cubilia platea sollicitudin ad hac senectus cursus nec, odio netus egestas urna lacus varius id curabitur ridiculus ante. Venenatis pretium quisque sagittis blandit fames dis cum, lacinia fermentum ultrices nisl malesuada magna pellentesque, mollis eros donec scelerisque sociosqu parturient.^[Esta es una nota al pie de página]
+
+$$
+f'(x) = \lim\limits_{h \rightarrow 0} \frac{f(x+h) - f(x)}{h}  
+$$
+    
+# Consejos
+
+## Lista sin orden en Markdown
+
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+    
+## Lista ordenada en Markdown
+
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+    
+# Otros tips
+
+A continuación mostramos un "corte de página":
+
+Sed ultrices fermentum facilisis. Vivamus vitae vestibulum sapien. Pellentesque quis pharetra nisi, et laoreet urna. Pellentesque in mi rutrum, porttitor diam vitae, vulputate elit. Duis vulputate pellentesque sollicitudin. Ut pretium nec orci id pharetra. Aenean ut lorem nec ipsum vestibulum dignissim. Donec feugiat dolor ac tellus cursus elementum id et lectus. Pellentesque elementum auctor congue.
+
+---
+
+Nullam et vehicula risus. Donec ac condimentum lorem. Ut vehicula molestie luctus. Maecenas pretium nisl id tellus placerat tempor. Aliquam gravida sed elit ut pulvinar. Curabitur metus magna, gravida in pulvinar nec, faucibus id nibh. Ut eu bibendum velit, et sollicitudin diam. Sed semper leo leo, vitae consectetur nisi maximus vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+    
+
+## Agregando una imagen a nuestro documento
+
+Tenemos dos formas de agregar una imagen, a través de Markdown o de R. Recomiendo usar la última porque nos permite personalizar más y agregar opciones de etiqueta más fácilmente.
+
+Probablemente necesitamos instalar la paquetería [magick](https://cran.r-project.org/web/packages/magick/vignettes/intro.html) 
+
+```
+install.packages("magick")
+```
+
+### Imagen con R
+
+```{r fig.cap = "Foto de mi perro. \\label{perro1}"}
+imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+imagen1
+```
+
+Utilizando las etiquetas de Latex podemos hacer referencia a la Imagen \ref{perro1} en nuestro documento. Esto no se puede hacer con la forma de Markdown.  
+
+```{r fig.cap = "Dos fotos de mi perro. \\label{perro2}"}
+imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+imagen2 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka2.jpg",scale=0.6)
+plot_grid(imagen1, imagen2)
+```
+
+\newpage
+
+# Utilizando referencias con CITR
+
+## Ejemplo de referencias para una Tabla Markdown
+
+Visita [Table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/)
+
+\begin{center} \textbf{Estadística descriptiva NSW Treatment = 1} \end{center}
+
+| Variable  | Obs | Mean     | Std. Dev. | Min |           |
+| --------- | --- | -------- | --------- | --- | --------- |
+| treatment | 185 | 1        | 0         | 1   | 1         |
+| age       | 185 | 25.82    | 7.16      | 17  | 48        |
+| education | 185 | 10.35    | 2.01      | 4   | 16        |
+| black     | 185 | 0.84     | 0.36      | 0   | 1         |
+| hispanic  | 185 | 0.06     | 0.24      | 0   | 1         |
+| married   | 185 | 0.19     | 0.39      | 0   | 1         |
+| nodegree  | 185 | 0.71     | 0.46      | 0   | 1         |
+| RE74      | 185 | 2,095.57 | 4,886.62  | 0   | 35,040.07 |
+| RE75      | 185 | 1,532.06 | 3,219.25  | 0   | 25,142.24 |
+| RE78      | 185 | 6,349.14 | 7,867.40  | 0   | 60,307.93 |
+
+Table: Tabla descriptiva 1 en Markdown
+
+Nuestra seleción de muestra del NSW coincide con la utilizada en [@dehejia_propensity_1998], que a su vez es una submuestra de la utilizada por [@lalonde_evaluating_1986], buscando tener datos disponibles sobre ingreso dos años previos a la aleatorización.
+
+## Ejemplo de referencias para una Tabla Latex
+
+Visita [tables generator](https://www.tablesgenerator.com/)
+
+\begin{table}[H]
+\centering
+\caption{Tabla 2 con latex}
+\label{tab:table2}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Variable  & Obs & Mean     & Std. Dev. & Min &           \\ \midrule
+treatment & 185 & 1        & 0         & 1   & 1         \\
+age       & 185 & 25.82    & 7.16      & 17  & 48        \\
+education & 185 & 10.35    & 2.01      & 4   & 16        \\
+black     & 185 & 0.84     & 0.36      & 0   & 1         \\
+hispanic  & 185 & 0.06     & 0.24      & 0   & 1         \\
+married   & 185 & 0.19     & 0.39      & 0   & 1         \\
+nodegree  & 185 & 0.71     & 0.46      & 0   & 1         \\
+RE74      & 185 & 2,095.57 & 4,886.62  & 0   & 35,040.07 \\
+RE75      & 185 & 1,532.06 & 3,219.25  & 0   & 25,142.24 \\
+RE78      & 185 & 6,349.14 & 7,867.40  & 0   & 60,307.93 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Podemos observar en la tabla \ref{tab:table2} la diferencia al utilizar tablas de Latex
+
+## Ejemplo de referencias para una Tabla con Kable
+
+```{r}
+knitr::kable(
+  head(mtcars[, 1:8], 10), booktabs = TRUE, align = 'c', format = 'latex',
+  caption = "Tabla creada a partir de Kable en R \\label{tab:table3}"
+  )
+```
+
+Por último, observemos en la tabla \ref{tab:table3} la diferencia al utilizar tablas creadas a partir de R
+
+\newpage
+
+\listoffigures
+
+\listoftables
+
+
+# Referencias
+
+<!-- <div id="refs"></div> -->
+
+Para comentar en Markdown envolvemos en `<!-- texto -->`

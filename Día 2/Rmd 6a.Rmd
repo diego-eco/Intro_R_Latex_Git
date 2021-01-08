@@ -1,0 +1,36 @@
+---
+title: "Día 2"
+author:
+  - Diego López^[El Colegio de México, diego.lopez@colmex.mx]
+  - Aurora Ramírez^[Facultad de Economía, aurora@example.org]
+date: " "
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+toc-title: Contenido
+urlcolor: blue
+---
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+```
+
+ctrl + alt + I
+
+cmd + alt + I
+
+Para el análisi utilizamos el siguiente comando
+
+```{r}
+print("Hola mundo")
+```
+
+```{r echo=FALSE}
+x <- 3
+```
+
+```{r}
+print(x)
+```
+

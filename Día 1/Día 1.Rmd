@@ -1,0 +1,75 @@
+---
+title: "Día 1"
+author: "Diego López Tamayo"
+date: "6/1/2021"
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 3
+toc-title: Contenido
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage 
+
+**Sintaxis de Markdown**
+
+# Título 1
+
+El formato de texto puede tener *itálicas* y **negritas** y `codigo`
+
+En mi tarea yo utilicé el siguiente comando:
+
+```
+print(base_de_datos)
+plot(variable_1)
+```
+
+## Lista en Markdown
+
+Esto es una lista (sin orden) 
+
+- Primero realizamos ...
+- Car 2
+- Car 3
+  - Subsec
+  
+## Lista en Latex
+  
+\begin{itemize}
+\item Primero realizamos ...
+\item Car 2
+\item Car 3
+  \begin{itemize}
+  \item Subsec
+  \end{itemize}
+\end{itemize}
+
+
+Esto es un texto en **negritas** en Markdown
+Esto es un texto en \textbf{negritas} en Latex
+
+Esta es una ecuación $3x^2-5y^3$ en línea
+
+Esto es un bloque de ecuación^[Esto es un pie de página]
+
+$$
+\frac{3x+6y-55}{3 \alpha ^2}
+$$
+$$
+ z = \frac{\partial x}{\partial y} + 4 \alpha + 3\beta^2
+$$
+
+Esta ecuación se obtuvo del [enlace](https://outlook.office.com/mail/inbox)
+
+Cuidado con los caracteres reservados como  \\ \* y  \- 
+
+
+
+
+
+
+
