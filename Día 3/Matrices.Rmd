@@ -1,0 +1,102 @@
+---
+title: "Ejemplo imprimir matrices"
+thanks: " "
+author:
+- Diego López Tamayo ^[Maestría en Economía . El Colegio de México . diego.lopez@colmex.mx]
+date: ""
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+geometry: margin=0.8in
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F, fig.align='center',
+                      fig.pos = "H", fig.width = 8, fig.height = 4) 
+```
+
+
+```{r}
+# Configuración
+rm(list = ls())
+pacman::p_load(tidyverse,
+               ggthemes,
+               haven,
+               kableExtra,
+               cowplot)
+```
+
+# R básico
+
+## Impresión por default
+
+```{r}
+x <- matrix(rep(2,12),3,4)
+y <- matrix(rep(3,8),4,2)
+print(x)
+```
+
+## Impresión con message
+
+```{r}
+x <- matrix(rep(2,12),3,4)
+y <- matrix(rep(3,8),4,2)
+```
+
+
+## Matrices con kable
+
+```{r}
+kable(x)
+```
+
+### Podemos personalizar Kable
+
+```{r}
+kbl(x, booktabs = T) %>%
+kable_styling(latex_options = "striped")
+```
+
+### Podemos personalizar Kable y centrar la tabla
+
+```{r}
+kbl(x, booktabs = T, caption = "Una matriz como tabla") %>%
+kable_styling(latex_options = c("striped", "hold_position"),position = "center")
+```
+
+
+## Matrices con xtable (Requiere librería "xtable")
+
+Este método nos crea a partir de una matriz en R una tabla en latex, entonces necesitamos correr el comando `xtable(x)` y después copiar y pegar la tabla latex fuera del Chunk
+
+```{r}
+#x <- as.data.frame(x)
+#library(xtable)
+#xtable()
+```
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & V1 & V2 & V3 & V4 \\ 
+  \hline
+1 & 2.00 & 2.00 & 2.00 & 2.00 \\ 
+  2 & 2.00 & 2.00 & 2.00 & 2.00 \\ 
+  3 & 2.00 & 2.00 & 2.00 & 2.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+## Extra: Función cat() para imprimir texto
+
+Si quieres incorporar un resultado en tu texto puedes hacerlo de la siguiente forma:
+
+```{r}
+resultado <- 8/3
+cat("El resultado es",resultado)
+```
+
