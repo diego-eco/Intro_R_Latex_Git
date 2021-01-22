@@ -1,7 +1,7 @@
 # Intro_R_Latex_Git
  Curso introductorio (3 días) para estudiantes de la Maestría de Economía Colmex
  
- ### Revisar el archivo de Instrucciones.pdf para tener listos los programas antes de iniciar
+ ### Revisar el archivo de Instrucciones_R_Latex.pdf para tener listos los programas antes de iniciar
 
 ---
 
