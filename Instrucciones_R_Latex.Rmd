@@ -2,6 +2,9 @@
 title: "Instalando R, R Studio y Latex"
 author: "Diego López Tamayo ^[El Colegio de México, diego.lopez@colmex.mx]"
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
   html_document:
     df_print: paged
     highlight: tango
@@ -9,9 +12,6 @@ output:
     toc: yes
     toc_depth: 3
     toc_float: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
 header:
 - \usepackage{amsmath}
 - \usepackage[spanish]{babel}
@@ -29,7 +29,7 @@ Para poder utilizar R y R Markdown para poder crear reportes en pdf y html neces
 
 - R (la versión más reciente en Enero 2020: 4.0.3)
 - R Studio (la versión más reciente en Enero 2020: 1.3.1093)
-- Latex (en alguna distribución). Recomendado: MikTeX Otros: Tinytex, TeXLive
+- Latex (en alguna distribución). Recomendado: MikTeX Otros: Tinytex, TeXLive, MacTeX para MacOS
 - R Tools (muy importante para Windows)
 
 A continuación se detallan los pasos:
@@ -137,25 +137,25 @@ Para instalar estas funciones adicionales necesitamos instalar un paquete de her
 
 - Buscar en la aplicación **Terminal** dentro de tus aplicaciones o a través de Spotlight y al abrirla te aparecerá una ventana como esta (puede ser que antes del símbolo `~` aparezca tu nombre de usuario). Sólo necesitas copiar y pegar el siguiente comando y dar Enter.
 
-![Instalar desde terminal](D:/GitHub/Economics_Toolkit/Instrucciones R/1.jpg){width=50%}
+![Instalar desde terminal](D:/GitHub/Economics_Toolkit/Instrucciones_R_Latex/1.jpg){width=50%}
 .  
 
 - Probablemente (dependiendo de la versión de MacOS) aparecerá una ventana como la siguiente preguntando si sólo queremos instalar Command Line Tools u obtener Xcode completo. No es necesario instalar Xcode, sólo seleccionar Instalar. Tomará unos minutos y queda todo listo, reinicie el equipo.
 
-![Instalar desde terminal](D:/GitHub/Economics_Toolkit/Instrucciones R/2.jpg){width=50%}
+![Instalar desde terminal](D:/GitHub/Economics_Toolkit/Instrucciones_R_Latex/2.jpg){width=50%}
 .
 
-## 4 Instalar MikTeX en MacOS
+## 4 Instalar MacTeX en MacOS
 
-- Entre al siguiente enlace [Instalar MikTeX](https://miktex.org/download)
+- Entre al siguiente enlace [Instalar MacTeX](http://www.tug.org/mactex/)
 - Seleccione Mac y oprima “Download”
-- Ejecute el archivo de instlación y siga las instrucciones: Instale sólo para su usuario (“Install MikTeX
+- Ejecute el archivo de instlación y siga las instrucciones: Instale sólo para su usuario (“Install MacTeX
 only for me”)
-- **IMPORTANTE: en la instalación de MikTeX debemos seleccionar: YES, cuando se nos pregunta: “Install missing packages on the-fly”.**
+- **IMPORTANTE: en la instalación de MacTeX debemos seleccionar: YES, cuando se nos pregunta: “Install missing packages on the-fly”.**
 
 ## 4a Instalando TinyTex en MacOS
 
-**No instalar TinyTex y MikTeX, sólo uno de los dos. Recomiendo MikTeX.** La principal diferencia es que MikTeX es más pesado pero si no tiene problemas de espacio en disco duro es la mejor opción, es más completo.
+**No instalar TinyTex y MacTeX, sólo uno de los dos. Recomiendo MacTeX.** La principal diferencia es que MacTeX es más pesado pero si no tiene problemas de espacio en disco duro es la mejor opción, es más completo.
 
 - Abra R Studio, deberá ver un mensaje de bienvenida y la Consola abierta lista para recibir comandos.
 - Copia y pegue el siguiente comando en la Consola y oprima Enter. Debería tomar unos segundos en instalar. Mientras aparezca el Botón Rojo de Stop arriba a la derecha de la consola significa que sigue trabajando R.
