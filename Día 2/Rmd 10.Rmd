@@ -99,16 +99,16 @@ install.packages("magick")
 ### Imagen con R
 
 ```{r fig.cap = "Foto de mi perro. \\label{perro1}"}
-imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
-imagen1
+# imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+# imagen1
 ```
 
 Utilizando las etiquetas de Latex podemos hacer referencia a la Imagen \ref{perro1} en nuestro documento. Esto no se puede hacer con la forma de Markdown.  
 
 ```{r fig.cap = "Dos fotos de mi perro. \\label{perro2}"}
-imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
-imagen2 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka2.jpg",scale=0.6)
-plot_grid(imagen1, imagen2)
+# imagen1 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka1.jpg",scale=0.6)
+# imagen2 <- ggdraw() + draw_image("C:/Users/lopez/Desktop/R & Latex/2/mishka2.jpg",scale=0.6)
+# plot_grid(imagen1, imagen2)
 ```
 
 \newpage
